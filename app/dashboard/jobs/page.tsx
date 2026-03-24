@@ -3,56 +3,83 @@ import React from 'react';
 import { Briefcase, Filter, ArrowUpRight, Search, Plus, MapPin, Clock, MoreHorizontal } from 'lucide-react';
 
 export default function JobListPage() {
-    const jobs = [
-        {
-            id: 1,
-            title: "Senior Product Manager",
-            department: "Product",
-            location: "San Francisco, CA (Hybrid)",
-            type: "Full-time",
-            status: "Active",
-            candidates: 124,
-            aiMatchRate: "86%",
-            daysOpen: 14,
-            color: "brand"
-        },
-        {
-            id: 2,
-            title: "Frontend Engineer (React)",
-            department: "Engineering",
-            location: "Remote (US)",
-            type: "Full-time",
-            status: "Active",
-            candidates: 218,
-            aiMatchRate: "92%",
-            daysOpen: 5,
-            color: "blue"
-        },
-        {
-            id: 3,
-            title: "VP of Sales",
-            department: "Sales",
-            location: "New York, NY",
-            type: "Full-time",
-            status: "Draft",
-            candidates: 0,
-            aiMatchRate: "-",
-            daysOpen: 0,
-            color: "amber"
-        },
-        {
-            id: 4,
-            title: "Data Scientist",
-            department: "Engineering",
-            location: "London, UK (Remote)",
-            type: "Contract",
-            status: "Closed",
-            candidates: 45,
-            aiMatchRate: "78%",
-            daysOpen: 42,
-            color: "red"
-        }
-    ];
+    const [jobs, setJobs] = React.useState<any[]>([]);
+    const [isLoading, setIsLoading] = React.useState(true);
+    const [stats, setStats] = React.useState({ active: "0", total: "0", avgTime: "-", matchRate: "-" });
+
+    React.useEffect(() => {
+        const fetchJobs = async () => {
+            try {
+                const response = await fetch('http://localhost:8000/api/v1/jobs', {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    setJobs(data.items || data);
+                } else {
+                    throw new Error('Fallback to mock');
+                }
+            } catch (error) {
+                // Fallback to mock data if backend isn't running yet
+                console.log("Using mock data for Jobs...");
+                setJobs([
+                    {
+                        id: 1,
+                        title: "Senior Product Manager",
+                        department: "Product",
+                        location: "San Francisco, CA (Hybrid)",
+                        type: "Full-time",
+                        status: "Active",
+                        candidates: 124,
+                        aiMatchRate: "86%",
+                        daysOpen: 14,
+                        color: "brand"
+                    },
+                    {
+                        id: 2,
+                        title: "Frontend Engineer (React)",
+                        department: "Engineering",
+                        location: "Remote (US)",
+                        type: "Full-time",
+                        status: "Active",
+                        candidates: 218,
+                        aiMatchRate: "92%",
+                        daysOpen: 5,
+                        color: "blue"
+                    },
+                    {
+                        id: 3,
+                        title: "VP of Sales",
+                        department: "Sales",
+                        location: "New York, NY",
+                        type: "Full-time",
+                        status: "Draft",
+                        candidates: 0,
+                        aiMatchRate: "-",
+                        daysOpen: 0,
+                        color: "amber"
+                    },
+                    {
+                        id: 4,
+                        title: "Data Scientist",
+                        department: "Engineering",
+                        location: "London, UK (Remote)",
+                        type: "Contract",
+                        status: "Closed",
+                        candidates: 45,
+                        aiMatchRate: "78%",
+                        daysOpen: 42,
+                        color: "red"
+                    }
+                ]);
+                setStats({ active: "34", total: "1,240", avgTime: "18 Days", matchRate: "42%" });
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchJobs();
+    }, []);
 
     return (
         <div className="max-w-7xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
