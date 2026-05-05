@@ -3,8 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
 export const metadata: Metadata = {
-  title: "TalentScout",
-  description: "Production-ready ATS frontend with a reusable design system and Docker-first deployment.",
+  title: "HireStack (TalentOS)",
+  description: "AI-native applicant tracking system for structured hiring, candidate pipelines, and recruiting analytics.",
 };
 
 export default function RootLayout({
@@ -13,9 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="antialiased">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <html lang="en" className="light" style={{ colorScheme: "light" }} suppressHydrationWarning>
+      <body className="antialiased" suppressHydrationWarning>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           {children}
         </ThemeProvider>
       </body>

@@ -1,6 +1,6 @@
-# TalentScout
+# HireStack (TalentOS)
 
-TalentScout is a production-oriented ATS frontend built with Next.js App Router, TypeScript, and Tailwind CSS v4.
+HireStack (TalentOS) is a production-oriented ATS frontend built with Next.js App Router, TypeScript, and Tailwind CSS v4.
 
 ## What changed
 
@@ -29,6 +29,20 @@ TalentScout is a production-oriented ATS frontend built with Next.js App Router,
 npm install
 npm run dev
 ```
+
+`npm run dev` now checks `NEXT_PUBLIC_API_BASE_URL` and, when it points to local backend infrastructure such as `http://localhost:8000`, automatically starts the sibling FastAPI backend if it is not already running.
+
+Useful variants:
+
+```bash
+# frontend only
+npm run dev:web
+
+# skip backend auto-start for one run
+HIRESTACK_SKIP_BACKEND_AUTOSTART=1 npm run dev
+```
+
+Backend startup logs are written to `.logs/backend-dev.log` when auto-start is used.
 
 ## Verification
 

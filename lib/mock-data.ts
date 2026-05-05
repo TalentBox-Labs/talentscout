@@ -35,6 +35,123 @@ export const dashboardMetrics = [
   { label: "Offer acceptance", value: "88%", delta: "+6 pts quality lift" },
 ] as const;
 
+export const adminOverviewMetrics = [
+  { label: "Pending approvals", value: "12", delta: "4 submitted in the last 24 hours" },
+  { label: "Organizations onboarding", value: "7", delta: "2 waiting on domain verification" },
+  { label: "Active organizations", value: "34", delta: "+3 this month" },
+  { label: "Internal actions due", value: "9", delta: "Access reviews and onboarding follow-ups" },
+] as const;
+
+export const adminApprovalQueue = [
+  {
+    title: "Approve Product Design Lead shortlist",
+    applicant: "Avery Brooks",
+    organization: "Northstar Labs",
+    requestedRole: "Recruiter",
+    submittedAt: "12 min ago",
+    priority: "High",
+    impact: "Recruiting team cannot start sourcing until access is granted.",
+  },
+  {
+    title: "Review onboarding request for hiring manager seat",
+    applicant: "Priya Menon",
+    organization: "Workgrid",
+    requestedRole: "Hiring manager",
+    submittedAt: "48 min ago",
+    priority: "Medium",
+    impact: "Manager dashboard access is blocked until approval is completed.",
+  },
+  {
+    title: "Validate new organization onboarding details",
+    applicant: "Jules Carter",
+    organization: "Helio Commerce",
+    requestedRole: "Recruiter",
+    submittedAt: "Today",
+    priority: "Medium",
+    impact: "Domain mismatch needs manual confirmation before activation.",
+  },
+] as const;
+
+export const organizationOverview = [
+  {
+    name: "Northstar Labs",
+    status: "Needs review",
+    admins: 2,
+    recruiters: 6,
+    pendingUsers: 3,
+    note: "Two recruiter approvals and one domain verification are waiting.",
+  },
+  {
+    name: "Workgrid",
+    status: "Healthy",
+    admins: 1,
+    recruiters: 4,
+    pendingUsers: 1,
+    note: "Last activation completed yesterday; no blockers on the org setup.",
+  },
+  {
+    name: "Helio Commerce",
+    status: "Onboarding",
+    admins: 1,
+    recruiters: 2,
+    pendingUsers: 2,
+    note: "Org profile is still missing hiring policies and default permissions.",
+  },
+  {
+    name: "Acme Health",
+    status: "Healthy",
+    admins: 3,
+    recruiters: 8,
+    pendingUsers: 0,
+    note: "No pending approvals; quarterly access review scheduled next week.",
+  },
+] as const;
+
+export const adminPlatformInsights = [
+  {
+    title: "New users in review",
+    value: "12",
+    trend: "+3 since yesterday",
+    description: "Most inbound requests are recruiter seats from recently onboarded organizations.",
+  },
+  {
+    title: "Organization growth",
+    value: "+3",
+    trend: "month to date",
+    description: "Three net-new organizations entered onboarding this month.",
+  },
+  {
+    title: "Access activation SLA",
+    value: "6.2h",
+    trend: "Within target",
+    description: "Average turnaround time for approval and activation remains under the 8-hour goal.",
+  },
+] as const;
+
+export const adminOperationalWatchlist = [
+  {
+    title: "Northstar Labs domain verification",
+    status: "Needs review",
+    detail: "Requested domain does not fully match the applicant email domain.",
+  },
+  {
+    title: "Inactive admin seats",
+    status: "Follow-up",
+    detail: "5 admin users have not logged in for more than 30 days and may need a check-in.",
+  },
+  {
+    title: "Onboarding backlog",
+    status: "Stable",
+    detail: "Current approval queue is manageable, but two orgs are close to breaching SLA.",
+  },
+] as const;
+
+export const adminRecentEvents = [
+  { label: "3 new recruiter access requests submitted", timestamp: "10 min ago" },
+  { label: "Workgrid completed organization setup and activated 2 hiring managers", timestamp: "42 min ago" },
+  { label: "Northstar Labs requested manual verification for a shared inbox domain", timestamp: "1 hour ago" },
+] as const;
+
 export const jobs: Job[] = [
   {
     id: "senior-frontend-engineer",
@@ -194,7 +311,7 @@ export const funnelData = [
 export const settingsSections = [
   {
     title: "Workspace",
-    description: "Branding, recruiter seats, and permissions for the TalentScout workspace.",
+    description: "Branding, recruiter seats, and permissions for the HireStack (TalentOS) workspace.",
     items: ["Company profile", "User roles", "Approval chains"],
   },
   {
